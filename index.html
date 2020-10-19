@@ -26,10 +26,31 @@
             }
 
             console.log(choice);
+            return choice;
         }
 
-        computerPlay();
+        function singleRound ( playerSelection, computerSelection) {
+            //Input Insenitivity
+            playerSelection = playerSelection.toLowerCase()
+            playerSelection = playerSelection.charAt(0).toUpperCase + playerSelection.slice(1);
+            
+            //Match Review
+            if (playerSelection == computerSelection) {
+                return ("It's a tie!")
+            }
+            else if ((computerSelection == "Rock" && playerSelection == "Scissors")||
+                (computerSelection == "Scissors" && playerSelection == "Paper")||
+                 computerSelection == "Paper" && playerSelection == "Rock") {
+                    return (`You lose! ${computerSelection} beats ${playerSelection}!}`);
+                 }
+            else {
+                return (`You win! ${playerSelection} beats ${computerSelection}!`)
+            }
+        }
         
+        const playerSelection = "Rock"
+        const computerSelection = computerPlay()
+        singleRound (playerSelection, computerSelection)
     </script>
 
     <body></body>
