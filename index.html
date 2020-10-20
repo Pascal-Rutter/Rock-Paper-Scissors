@@ -25,32 +25,40 @@
                     break;
             }
 
-            console.log(choice);
+            
             return choice;
         }
 
-        function singleRound ( playerSelection, computerSelection) {
+        function singleRound (playerSelection, computerSelection) {
             //Input Insenitivity
             playerSelection = playerSelection.toLowerCase()
-            playerSelection = playerSelection.charAt(0).toUpperCase + playerSelection.slice(1);
+            playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+            
+            //Console output for better understanding
+            console.log("You choose: " + playerSelection);
+            console.log("The Computer chosse: " + computerSelection);
             
             //Match Review
+            matchReview(playerSelection, computerSelection);
+        }
+        
+        function matchReview(playerSelection, computerSelection) {
             if (playerSelection == computerSelection) {
                 return ("It's a tie!")
             }
             else if ((computerSelection == "Rock" && playerSelection == "Scissors")||
                 (computerSelection == "Scissors" && playerSelection == "Paper")||
                  computerSelection == "Paper" && playerSelection == "Rock") {
-                    return (`You lose! ${computerSelection} beats ${playerSelection}!}`);
+                    return (`You lose! ${computerSelection} beats ${playerSelection}!`);
                  }
             else {
                 return (`You win! ${playerSelection} beats ${computerSelection}!`)
             }
         }
-        
-        const playerSelection = "Rock"
+
+        const playerSelection = "rOcK"
         const computerSelection = computerPlay()
-        singleRound (playerSelection, computerSelection)
+        console.log(singleRound (playerSelection, computerSelection));
     </script>
 
     <body></body>
