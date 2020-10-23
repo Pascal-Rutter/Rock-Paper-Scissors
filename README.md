@@ -8,3 +8,7 @@ Learnings:
 -Gained some experience with String-manipulation and comparisons
 -Event though it worked fine; for the future should probably plan the returns and functionality
  of essential functions ahead with the functions that use them in mind.
+
+23.10.20
+Next plan:
+Implementing a UI using JavaScript
