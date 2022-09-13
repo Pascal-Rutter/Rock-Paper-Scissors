@@ -25,44 +25,61 @@ function computerPlay () {
 }
 
 function playOneRound (playerSelection,) {
+    //Refresh If You want to start a new Game
+    if (playerScore == 5 || computerScore == 5){
+        return;
+    }
+
     const computerSelection = computerPlay();
+    
     //Input Insenitivity + Check
     playerSelection = playerSelection.toLowerCase()
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
     console.assert(playerSelection == "Rock" ||playerSelection =="Paper"||playerSelection =="Scissors",  "Input was invalid")
     
     //Output UI
-    console.log("You choose: " + playerSelection);
-    console.log("The Computer choose: " + computerSelection);
+    selectionField.textContent = "You chose: " + playerSelection + " | The Computer chose: " + computerSelection;
 
     //Match Review
-    let result = matchReview(playerSelection, computerSelection);
-    if (playerScore == 5 || computerScore == 5) {alert(result);}
+    let endResult = matchReview(playerSelection, computerSelection);
+    if (playerScore == 5 || computerScore == 5) {
+        const winnerField = document.createElement("p");
+        winnerField.textContent = endResult;
+        document.getElementById("result").appendChild(winnerField)
+    }
 }
 
 function matchReview(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        console.log("It's a Tie!")
+        resultField.textContent = "It's a Tie!";
     }
     //Computer-Win conditions
     else if ((computerSelection == "Rock" && playerSelection == "Scissors")||
         (computerSelection == "Scissors" && playerSelection == "Paper")||
             computerSelection == "Paper" && playerSelection == "Rock") {
-            console.log(`You lose! ${computerSelection} beats ${playerSelection}!`)
+            resultField.textContent = `You lose! ${computerSelection} beats ${playerSelection}!`;
             computerScore++;
             computerScoreField.textContent =  `ComputerScore: ${computerScore}`;
-            return ("The Computer wins!");
+            return ("The Computer wins the Game!");
             }
     else {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
+        resultField.textContent = `You win! ${playerSelection} beats ${computerSelection}!`;
         playerScore++;
         playerScoreField.textContent =  `PlayerScore: ${playerScore}`;
-        return ("You win!")
+        return ("You win the Game!")
     }
 }
 
 let playerScore = 0;
 let computerScore = 0;
+
+const selectionField = document.createElement("p");
+selectionField.textContent = " ";
+document.getElementById("result").appendChild(selectionField);
+
+const resultField = document.createElement("p");
+resultField.textContent = " ";
+document.getElementById("result").appendChild(resultField);
 
 const playerScoreField = document.createElement("p");
 playerScoreField.textContent =  `PlayerScore: ${playerScore}`;
